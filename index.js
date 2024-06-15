@@ -12,8 +12,10 @@ const recipeJSON =
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+let data;
+
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", {recipe : data}); // sending a key value pair to the ejs file
 });
 
 app.post("/recipe", (req, res) => {
@@ -35,6 +37,7 @@ app.post("/recipe", (req, res) => {
     default:
       break;
   }
+  res.redirect("/");
 });
 
 app.listen(port, () => {
